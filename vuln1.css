@@ -4,9 +4,7 @@
     box-sizing: border-box;
     color: #f6f6f6;
     font-family: "Roboto Condensed", serif;
-    font-optical-sizing: auto;
     font-weight: 600;
-    font-style: normal;
     font-size: x-large;
 }
 
@@ -23,60 +21,44 @@ header {
     border: 2px solid #86a174;
     border-radius: 15px;
     align-items: center;
-    background-color: rgb(65, 48, 48);
     box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.2), 0px 2px 4px rgba(255, 255, 255, 0.1);
     animation: borderPulse 3s infinite;
-    background: url('https://images.unsplash.com/photo-1734216736200-6a4f086c1bea?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZGFyayUyMGJyb3dufGVufDB8fDB8fHww') no-repeat center center;
-    background-size: cover;
-    position: relative;
+    background-color: #424890;
 }
 
 @keyframes borderPulse {
     0% {
         border-color: #86a174;
     }
-    25%{
+    25% {
         border-color: #FAD0C9;
     }
-
     50% {
         border-color: #D1A9E1;
     }
-
-    75%{
+    75% {
         border-color: #badae5;
     }
-
     100% {
         border-color: #D6B897;
     }
 }
 
 .heading {
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    font-size: large;
+    text-align: center;
+    font-size: 2rem;
     color: rgb(229, 232, 237);
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6), -1px -1px 2px rgba(255, 255, 255, 0.4);
-    font-size: 2rem;
     animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
-
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
+    0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
     }
-
     40% {
         transform: translateY(-20px);
     }
-
     60% {
         transform: translateY(-10px);
     }
@@ -85,32 +67,22 @@ header {
 main {
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    margin: 0;
-    align-items: normal;
-    justify-content: center;
-    background: url('https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg') no-repeat center center fixed;
-    background-size: cover;
-    background-blend-mode: multiply;
-    background-color: rgba(44, 44, 44, 0.8);
-    /* Adjust opacity as needed */
-    border: 2px solid #86a174;
-    border-radius: 15px;
     padding: 20px;
     margin: 20px;
+    border: 2px solid #86a174;
+    border-radius: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
     animation: pulseBorder 3s infinite;
+    background-color: #2e3267;
 }
 
 @keyframes pulseBorder {
     0% {
         border-color: #86a174;
     }
-
     50% {
         border-color: #ffffff;
     }
-
     100% {
         border-color: #86a174;
     }
@@ -120,8 +92,6 @@ main {
     text-align: justify;
     padding: 20px;
     font-size: 22px;
-    margin-bottom: 30px;
-
 }
 
 .content {
@@ -137,9 +107,6 @@ main {
     font-size: 20px;
     text-align: justify;
     line-height: 2.5;
-    word-spacing: 2;
-    box-sizing: border-box;
-    overflow: auto;
 }
 
 .content-left pre,
@@ -183,7 +150,6 @@ main {
 }
 
 .content-description h2 {
-    justify-content: center;
     text-align: center;
 }
 
@@ -193,6 +159,5 @@ main {
     font-size: 20px;
     text-align: justify;
     line-height: 1.2;
-    word-spacing: 1;
     font-weight: lighter;
 }
