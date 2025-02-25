@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Your Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #00e676;
+        }
+
+        textarea {
+            width: 80%;
+            max-width: 600px;
+            height: 150px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border: 1px solid #00e676;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            resize: none;
+        }
+
+        button {
+            background-color: #00e676;
+            color: #121212;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #00c853;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            background-color: #1e1e1e;
+        }
+
+        .error {
+            color: #ff5252;
+        }
+
+        .success {
+            color: #00e676;
+        }
+    </style>
+    <script>
+        async function scanCode() {
+            const userInput = document.getElementById("codeInput").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            if (!userInput) {
+                resultDiv.innerHTML = "❌ Please enter some code!";
+                resultDiv.className = "error";
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:3000/scan", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code: userInput })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Server error. Please try again.");
+                }
+
+                const data = await response.json();
+
+                if (data.error) {
+                    resultDiv.innerHTML = `❌ Error: ${data.error}`;
+                    resultDiv.className = "error";
+                } else {
+                    resultDiv.innerHTML = data.result || "✅ No vulnerabilities detected!";
+                    resultDiv.className = data.result.includes("❌") ? "error" : "success";
+                }
+
+            } catch (error) {
+                console.error("Request Error:", error);
+                resultDiv.innerHTML = "❌ Failed to connect to scanner!";
+                resultDiv.className = "error";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Enter Code for Security Scan:</h2>
+    <textarea id="codeInput" placeholder="Enter JavaScript/PHP code here..."></textarea>
+    <br>
+    <button onclick="scanCode()">Scan Code</button>
+    <h3>Result:</h3>
+    <div id="result"></div>
+</body>
+</html>
