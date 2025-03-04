@@ -21,13 +21,13 @@
 </head>
 <body>
     <nav>
-        <div class="container nav_container">
+        <div class="container nav__container">
             <a href="index.html"><h4>Cyber Threat Intelligence</h4></a>
-            <ul class="nav_menu">
+            <ul class="nav__menu">  
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html">About</a></li>
-                <li><a href="index.html">Courses</a></li>
-                <li><a href="index.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
             </ul>
             <button id="open-menu-btn"><i class="uil uil-bars"></i></i></button>
             <button id="close-menu-btn"><i class="uil uil-multiply"></i></i></button>
@@ -40,12 +40,12 @@
 
     <header>
         <div class="container header_container">
-            <div class="header_left">
-                <h1>Grow your skills to advance your career path</h1>
+            <div class="header__left">
+                <h1>Empower Your Defense with Cyber Threat Intelligence</h1>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Stay ahead of evolving threats with real-time insights and proactive security measures. Protect, detect, and respond with confidence.
                 </p>
-                <a href="courses.html" class="btn btn-primary">Get Started</a>
+                <a href="index.html" class="btn btn-primary">Get Started</a>
             </div>
             <div class="header_right">
                 <div class="header_right-image">
@@ -58,200 +58,151 @@
 
     <section class="categories">
         <div class="container categories_container">
-            <div class="categories_left">
-                <h1>Categories</h1>
+            <div class="categories__left">
+                <h1>Categories of Cyber Threats</h1>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Explore the diverse types of cyber threats including malware, phishing attacks, ransomware, and insider threats. Stay informed to safeguard your digital assets. 
                 </p>
-                <a href="#" class="btn">Learn More</a>
             </div>
 
-            <div class="categories_right">
+            <div class="categories__right">
                 <article class="category">
-                    <span class="category_icon"><i class="uil uil-bitcoin-circle"></i></span>
-                        <i class="uil uil-bitcoin-circle"></i>
+                    <span class="category__icon"><i class="uil uil-shield-check"></i></span>
                     </span>
-                    <h5>Blockchain</h5>
-                    <p>Loreum ipsum dolor sit amet consectetur adipisicing elit</p>
+                    <h5>Broken Access Control</h5>
+                    <p>Improperly enforced restrictions on user actions, leading to unauthorized access to resources or functions.</p>
                 </article>
 
                     <article class="category">
-                        <span class="category_icon"><i class="uil uil-bitcoin-circle"></i></span>
-                            <i class="uil uil-bitcoin-circle"></i>
+                        <span class="category__icon"><i class="uil uil-virus-slash"></i></span>
                         </span>
-                        <h5>Blockchain</h5>
-                        <p>Loreum ipsum dolor sit amet consectetur adipisicing elit</p>
+                        <h5>Cryptographic Failures</h5>
+                        <p>Weaknesses in the implementation of cryptography, such as poor key management or outdated algorithms, compromising sensitive data.</p>
                     </article>
 
                         <article class="category">
-                            <span class="category_icon"><i class="uil uil-bitcoin-circle"></i></span>
-                                <i class="uil uil-bitcoin-circle"></i>
+                            <span class="category__icon"><i class="uil uil-bug"></i></span>
                             </span>
-                            <h5>Blockchain</h5>
-                            <p>Loreum ipsum dolor sit amet consectetur adipisicing elit</p>
+                            <h5>Injection</h5>
+                            <p>Unsanitized user input is executed as part of a query or command, allowing attackers to manipulate databases or systems.</p>
                         </article>
 
                     
                         <article class="category">
-                            <span class="category_icon"><i class="uil uil-bitcoin-circle"></i></span>
-                                <i class="uil uil-bitcoin-circle"></i>
+                            <span class="category__icon"><i class="uil uil-bolt-alt"></i></span>
                             </span>
-                            <h5>Blockchain</h5>
-                            <p>Loreum ipsum dolor sit amet consectetur adipisicing elit</p>
+                            <h5>Insecure Design</h5>
+                            <p>Applications are designed with flaws or without considering security threats, leading to exploitable vulnerabilities</p>
                         </article>
 
                     
                         <article class="category">
-                            <span class="category_icon"><i class="uil uil-bitcoin-circle"></i></span>
-                                <i class="uil uil-bitcoin-circle"></i>
+                            <span class="category__icon"><i class="uil uil-server-network-alt"></i></span>
                             </span>
-                            <h5>Blockchain</h5>
-                            <p>Loreum ipsum dolor sit amet consectetur adipisicing elit</p>
+                            <h5>Security Misconfigurations</h5>
+                            <p>Incorrect configuration of security controls, leaving systems exposed to attacks.</p>
                         </article>
 
                     
                         <article class="category">
-                            <span class="category_icon"><i class="uil uil-bitcoin-circle"></i></span>
-                                <i class="uil uil-bitcoin-circle"></i>
+                            <span class="category__icon"><i class="uil uil-lock-access"></i></span>
                             </span>
-                            <h5>Blockchain</h5>
-                            <p>Loreum ipsum dolor sit amet consectetur adipisicing elit</p>
+                            <h5>Vulnerable and Outdated Components</h5>
+                            <p>Use of outdated libraries or software that contain known security flaws.</p>
                         </article>
 
                         <article class="category">
-                            <span class="category_icon"><i class="uil uil-bitcoin-circle"></i></span>
-                                <i class="uil uil-bitcoin-circle"></i>
+                            <span class="category__icon"><i class="uil uil-document-info"></i></span>
                             </span>
-                            <h5>Blockchain</h5>
-                            <p>Loreum ipsum dolor sit amet consectetur adipisicing elit</p>
+                            <h5>Identification and Authentication Failures</h5>
+                            <p>Inadequate protection of software and data from tampering or unauthorized changes.</p>
+                        </article>
+
+                        <article class="category">
+                            <span class="category__icon"><i class="uil uil-document-info"></i></span>
+                            </span>
+                            <h5>Software and Data Integrity Failures</h5>
+                            <p>Provide actionable insights on emerging threats and attack patterns</p>
+                        </article>
+
+                        <article class="category">
+                            <span class="category__icon"><i class="uil uil-document-info"></i></span>
+                            </span>
+                            <h5>Security Logging and Monitoring Failures</h5>
+                            <p>Lack of proper logging or failure to monitor suspicious activities, delaying detection of security breaches.</p>
+                        </article>
+
+                        <article class="category">
+                            <span class="category__icon"><i class="uil uil-document-info"></i></span>
+                            </span>
+                            <h5>Server-Side Request Forgery (SSRF)</h5>
+                            <p>Attackers trick the server into making unauthorized requests to internal resources.</p>
                         </article>
                 </div>
             </div>
     </section>
 
-
-    <!--=================================END OF CATEGORIES==================================-->
-
-
-    <section class="courses">
-        <h2>Our Popular Courses</h2>
-        <div class="container courses_container">
-            <article class="course">
-                <div class="course_image">
-                    <img src="./images/course1.jpg">
-                </div>
-                  <h4>Responsive Social Media Website UI Design</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    </p>
-                    <a href="courses.html" class="btn btn-primary">Learn More</a>
-                
-            </article>
-
-            <article class="course">
-                <div class="course_image">
-                    <img src="./images/course2.jpg">
-                </div>
-                <div class="course_info">
-                  <h4>Responsive Social Media Website UI Design</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    </p>
-                    <a href="courses.html" class="btn btn-primary">Learn More</a>
-                </div>
-            </article>
-
-            <article class="course">
-                <div class="course_image">
-                    <img src="./images/course3.jpg">
-                </div>
-                  <h4>Responsive Social Media Website UI Design</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    </p>
-                    <a href="courses.html" class="btn btn-primary">Learn More</a>
-                
-            </article>
-
-            <article class="course">
-                <div class="course_image">
-                    <img src="./images/course4.jpg">
-                </div>
-                  <h4>Responsive Social Media Website UI Design</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    </p>
-                    <a href="courses.html" class="btn btn-primary">Learn More</a>
-                
-            </article>
-
-            <article class="course">
-                <div class="course_image">
-                    <img src="./images/course5.jpg">
-                </div>
-                  <h4>Responsive Social Media Website UI Design</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    </p>
-                    <a href="courses.html" class="btn btn-primary">Learn More</a>
-            </article>
-        </div>
-    </section>
-
-    <!--================================================================END OF COURSES======================================-->
-
-
-
+    <!--==============================END OF CATEGORIES==============================-->
 
     <section class="faqs">
         <h2>Frequently Asked Questions</h2>
-        <div class="container faqs_container">
-            <article class="faq">
-                <div class="faq_icon"></div>
+        <div class="container faqs__container">
+            <article class="faq open">
+                <div class="faq__icon"><i class="uil uil-plus"></i></div>
                 <div class="question_answer">
-                    <h4>How do I know which course is right for me?</h4>
+                    <h4>What are the most common types of cyber threats?</h4>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        The most common types include malware, ransomware, phishing attacks, denial-of-service (DoS) attacks, and insider threats.
                     </p>
                 </div>
             </article>
 
-            <article class="faq">
-                <div class="faq_icon"><i class="uil uil-plus"></i></div>
+            <article class="faq open">
+                <div class="faq__icon"><i class="uil uil-plus"></i></div>
                 <div class="question_answer">
-                    <h4>How do I know which course is right for me?</h4>
+                    <h4>How can I protect my system from ransomware attacks?</h4>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Use strong antivirus software, keep your system updated, avoid suspicious emails, and regularly back up your data to mitigate the impact of ransomware attacks.
+                </div>
+            </article>
+
+            <article class="faq open">
+                <div class="faq__icon"><i class="uil uil-plus"></i></div>
+                <div class="question_answer">
+                    <h4>What is the difference between a vulnerability and a threat?</h4>
+                    <p>
+                        A vulnerability is a weakness in a system that can be exploited, while a threat is a potential danger that can exploit a vulnerability to cause harm.
                     </p>
                 </div>
             </article>
 
-            <article class="faq">
-                <div class="faq_icon"><i class="uil uil-plus"></i></div>
+            <article class="faq open">
+                <div class="faq__icon"><i class="uil uil-plus"></i></div>
                 <div class="question_answer">
-                    <h4>How do I know which course is right for me?</h4>
+                    <h4>What are the signs of a phishing attack ?</h4>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Suspicious emails, unexpected attachments, fake login pages, urgent requests for sensitive information, and unusual sender addresses are common signs of phishing attacks. 
                     </p>
                 </div>
             </article>
 
-            <article class="faq">
-                <div class="faq_icon"><i class="uil uil-plus"></i></div>
+            <article class="faq open">
+                <div class="faq__icon"><i class="uil uil-plus"></i></div>
                 <div class="question_answer">
-                    <h4>How do I know which course is right for me?</h4>
+                    <h4>How does a firewall help in preventing cyber threats ?</h4>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        A firewall acts as a barrier between your internal network and external threats by monitoring and controlling incoming and outgoing network traffic based on security rules. 
                     </p>
                 </div>
             </article>
 
-            <article class="faq">
-                <div class="faq_icon"><i class="uil uil-plus"></i></div>
+
+            <article class="faq open">
+                <div class="faq__icon"><i class="uil uil-plus"></i></div>
                 <div class="question_answer">
-                    <h4>How do I know which course is right for me?</h4>
+                    <h4>What is social engineering in cybersecurity ?</h4>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Social engineering is a technique used by attackers to manipulate individuals into divulging confidential information, often by exploiting human emotions and trust. 
                     </p>
                 </div>
             </article>
@@ -261,20 +212,20 @@
 
     <!--================================================================END OF FAQS=============================================-->
 
-    <section class="container testimonials_container mySwiper">
-        <h2>Students' Testimonials</h2>
-        <div class="swiper-wrapper">
+    <section class="container testimonials__container mySwiper">
+        <!-- <h2>Students' Testimonials</h2> -->
+        <!-- <div class="swiper-wrapper">
             <article class="testimonial swiper-slide">
                 <div class="avatar">
                     <img src="./images/avatar1.jpg">
                 </div>
-                <div class="testimonial_info">
+                <div class="testimonial__info">
                     <h5>John Doe</h5>
                     <small>Web Developer</small>
                 </div>
-                <div class="testimonial_body">
+                <div class="testimonial__body">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Hello, I'm a web developer with expertise in HTML, CSS, and JavaScript. 
                     </p>
                 </div>
             </article>
@@ -283,13 +234,13 @@
                 <div class="avatar">
                     <img src="./images/avatar2.jpg">
                 </div>
-                <div class="testimonial_info">
+                <div class="testimonial__info">
                     <h5>Jane Smith</h5>
                     <small>Graphic Designer</small>
                 </div>
-                <div class="testimonial_body">
+                <div class="testimonial__body">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Hey, I'm a graphic designer with a passion for creating visually appealing designs.
                     </p>
                 </div>
             </article>
@@ -298,13 +249,13 @@
                 <div class="avatar">
                     <img src="./images/avatar3.jpg">
                 </div>
-                <div class="testimonial_info">
+                <div class="testimonial__info">
                     <h5>Michael Brown</h5>
                     <small>Software Engineerr</small>
                 </div>
-                <div class="testimonial_body">
+                <div class="testimonial__body">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Hey, I'm a Software Engineer with expertise in Java, Python, and C++. 
                     </p>
                 </div>
             </article>
@@ -313,13 +264,13 @@
                 <div class="avatar">
                     <img src="./images/avatar4.jpg">
                 </div>
-                <div class="testimonial_info">
+                <div class="testimonial__info">
                     <h5>Emily Davis</h5>
                     <small>Data Analyst</small>
                 </div>
-                <div class="testimonial_body">
+                <div class="testimonial__body">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        I'm Data Analyst with expertise in SQL, Python, and Tableau. 
                     </p>
                 </div>
             </article>
@@ -328,17 +279,17 @@
                 <div class="avatar">
                     <img src="./images/avatar5.jpg">
                 </div>
-                <div class="testimonial_info">
+                <div class="testimonial__info">
                     <h5>Sarah Wilson</h5>
                     <small>Project Manager</small>
                 </div>
-                <div class="testimonial_body">
+                <div class="testimonial__body">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Hello, I'm a Project Manager with expertise in Agile, Scrum, and Waterfall.
                     </p>
                 </div>
             </article>
-        </div>
+        </div> -->
         <div class="swiper-pagination"></div>
     </section>
 
@@ -346,44 +297,41 @@
 
     <!--================================================================END OF TESTIMONIALS=============================================-->
 
-
-
     <footer>
-        <div class="container footer_container">
-            <div class="footer_1">
+        <div class="footer__container">
+            <div class="footer__1">
             <a href="index.html" class="footer_logo"><h4>Cyber Threat Intelligence</h4></a>
             <p>
                 2023 Cyber Threat Intelligence. All rights reserved.
             </p>
         </div>
 
-        <div class="footer_2">
+        <div class="footer__2">
             <h4>Permalinks</h4>
             <ul class="permalinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="courses.html">Courses</a></li>
+                <!-- <li><a href="courses.html">Courses</a></li> -->
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
 
-        <div class="footer_3">
-            <h4>Primacy</h4>
+        <div class="footer__3">
+            <h4>Privacy</h4>
             <ul class="permalinks">
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms and Conditions</a></li>
             </ul>
         </div>
 
-        <div class="footer_4">
+        <div class="footer__4">
             <h4>Contact Us</h4>
             <div>
                 <p>Phone : +91 123456789</p>
-                <p>Email : officialcti@gmail</p>
+                <p>Email : cyberthreatintelligence@gmail.com</p>
             </div>
-        </div>
-
-        <ul class="footer_socials">
+        
+        <ul class="footer__socials">
             <li>
                 <a href="#"><i class="uil uil-facebook-f"></i></a>
             </li>
@@ -397,22 +345,21 @@
                 <a href="#"><i class="uil uil-linkedin-alt"></i></a>
             </li>
         </ul>
-
-        <div class="footer_copyright">
-            <small>Copyright &copy; Cyber Threat Intelligence</small>
         </div>
+
+        
     </div>
+            <div class="footer__copyright">
+                <small>Copyright &copy; Cyber Threat Intelligence</small>
+            </div>
     </footer>
 
-
-
-
-    <script src="./main.js"></script>
+    <script src="./style.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
         var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 1,
+          slidesPerView: 3,
           spaceBetween: 30,
           pagination: {
             el: ".swiper-pagination",
