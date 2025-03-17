@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirusTotal Scanner</title>
+    <style>
+        /* Dark mode with professional colors */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .scanner {
+            background: #1e1e1e;
+            padding: 20px;
+            margin: 20px auto;
+            width: 350px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #333;
+            border: 1px solid #555;
+            color: #fff;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 12px;
+            background: linear-gradient(45deg, #ff6b6b, #5568fe);
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #ff4d4d, #3349ff);
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>VirusTotal Scanner</h1>
+
+    <div class="scanner">
+        <h2>Scan a URL</h2>
+        <input type="text" id="urlInput" placeholder="Enter URL to scan">
+        <button onclick="scanURL()">Scan URL</button>
+        <p class="result" id="urlResult"></p>
+    </div>
+
+    <div class="scanner">
+        <h2>Scan a File</h2>
+        <input type="file" id="fileInput">
+        <button onclick="scanFile()">Scan File</button>
+        <p class="result" id="fileResult"></p>
+    </div>
+
+    <script>
+        async function scanURL() {
+            const url = document.getElementById("urlInput").value;
+            const resultElement = document.getElementById("urlResult");
+            resultElement.innerText = "🔍 Scanning... Please wait.";
+
+            try {
+                const response = await fetch("http://localhost:5000/scan-url", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url }),
+                });
+
+                const result = await response.json();
+                if (result.error) {
+                    resultElement.innerText = `⚠️ Error: ${result.error}`;
+                } else {
+                    resultElement.innerHTML = `
+                        🔍 Total Scans: ${result.total}<br>
+                        ✅ Harmless: ${result.harmless}<br>
+                        ⚠️ Suspicious: ${result.suspicious}<br>
+                        ❌ Malicious: ${result.malicious}<br>
+                        ❓ Undetected: ${result.undetected}
+                    `;
+                }
+            } catch (error) {
+                resultElement.innerText = "❌ Failed to scan URL.";
+            }
+        }
+        async function scanFile() {
+    const file = document.getElementById("fileInput").files[0];
+    const resultElement = document.getElementById("fileResult");
+    resultElement.innerText = "🔍 Scanning... Please wait.";
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+        // Upload the file and get the scanId
+        const uploadResponse = await fetch("http://localhost:5000/scan-file", { method: "POST", body: formData });
+        const uploadResult = await uploadResponse.json();
+
+        if (uploadResult.error) {
+            resultElement.innerText = `⚠️ Error: ${uploadResult.error}`;
+            return;
+        }
+
+        const { scanId, stats } = uploadResult;
+        if (stats) {
+            resultElement.innerHTML = `
+                🔍 Total Scans: ${stats.total}<br>
+                ✅ Harmless: ${stats.harmless}<br>
+                ⚠️ Suspicious: ${stats.suspicious}<br>
+                ❌ Malicious: ${stats.malicious}<br>
+                ❓ Undetected: ${stats.undetected}
+            `;
+        } else {
+            resultElement.innerText = "❌ Failed to fetch analysis results.";
+        }
+    } catch (error) {
+        resultElement.innerText = "❌ Failed to upload file.";
+    }
+}
+    </script>
+</body>
+
+</html>
