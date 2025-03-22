@@ -6,12 +6,12 @@
 
 .about__achievements-container {
     display: grid;
-    grid-template-columns: 40% 60%;
+    /* grid-template-columns: 40% 60%; */
     gap: 5rem;
 }
 
 .about__achievements-right > p {
-    margin: 1.6rem 0 2.5rem;
+    margin: 1rem 0 2.5rem;
 }
 
 .achievements__cards {
