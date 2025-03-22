@@ -290,6 +290,7 @@ header {
     height: auto;
     background: var(--color-primary);
     cursor: pointer;
+    border-radius: 20px;
 }
 
 .faq h4 {
@@ -311,49 +312,6 @@ header {
     display: block
 }
 
-/* ====================================== TESTIMONIALS ========================================= */
-
-.testimonials__container {
-    overflow-x: hidden;
-    position: relative;
-    margin-bottom: 5rem;
-}
-
-.testimonial {
-    padding-top: 2rem;
-}
-
-.avatar {
-    width: 6rem;
-    height: 6rem;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 1rem;
-    border: 1rem solid var(--color-bg1);
-}
-
-.testimonial__info {
-    text-align: center;
-}
-
-.testimonial__body {
-    background: var(--color-primary);
-    padding: 2rem;
-    margin-top: 3rem;
-    position: relative;
-}
-
-.testimonial__body::before {
-    content: "";
-    display: block;
-    background: var(--color-primary);
-    width: 3rem;
-    height: 3rem;
-    position: absolute;
-    left: 50%;
-    top: -1.5rem;
-    transform: rotate(45deg);
-}
 
 /* =================================== FOOTER ===================================== */
 
@@ -367,11 +325,12 @@ header {
 .footer__container {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    /* grid-template-columns: repeat(4, 1fr); */
     gap: 2rem;
-    justify-content: center;
-    align-items: start;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
 }
 
 .footer__container > div h4 {
@@ -597,4 +556,19 @@ footer ul li a:hover {
     .footer__socials {  
         justify-content: center;
     }   
+}
+
+
+.category {
+    text-align: center; /* Centers inline elements */
+}
+
+.category__link {
+    display: inline-block; /* Needed for margin auto */
+    padding: 10px 20px;
+    background-color: #6c63ff; /* Change color as needed */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 13px;
+    margin-top: 10px; /* Adjust spacing */
 }
