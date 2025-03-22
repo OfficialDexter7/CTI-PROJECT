@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insecure Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vuln2.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-title">
+            Insecure Design - Vulnerability 4
+        </div>
+    </header>
+
+    <main class="site-content">
+        <section class="content-description">
+            <h1>Description of Insecure Design Vulnerability</h1>
+            <p>
+                <span class="highlight">To clearly understand this vulnerability, it is important to first
+                    understand the following key terms:</span>
+                <br><br>
+                <ol>
+                    <li><span>Threat Modelling</span>: Threat modeling is a security planning process where developers think like hackers to find and fix weaknesses before an attack happens. It helps in understanding threats, possible attacks, and how to stop them. If you don’t plan for threats, attackers might find weak points in your system and exploit them. Threat modeling ensures security is built from the start instead of fixing issues later.</li>
+                    <li><span>Weak Security Rules</span>: Important security steps such as Rate limiting, Access Control, etc., are missing from the application.</li>
+                </ol>
+                <br>
+                <span class="highlight">What is Insecure Design Flaw?</span><br><br>
+                <ul>
+                    <li>Insecure design happens when an application is not built with security in mind. It means the system’s architecture, logic, or features allow attackers to misuse or break it.</li>
+                    <li>This is not a coding mistake but a poor security decision made during development. Even if the code works correctly, the system remains vulnerable because it was not designed securely.</li>
+                </ul><br>
+                <span class="highlight">What leads to Insecure Design?</span><br><br>
+                <ol>
+                    <li><b>No Threat Modelling</b>: Threat modeling means thinking about how hackers might attack the system before building it. If developers skip this step, they don’t plan for security risks, leaving weaknesses in the design. For example, if an e-commerce website does not consider that users might try to manipulate discount codes, attackers can misuse them to get unlimited discounts. Without threat modeling, security flaws remain unnoticed until an actual attack happens.</li>
+                    <li><b>Weak Security Rules</b>: Security rules are necessary to protect sensitive information and prevent unauthorized actions. If important measures like access control, authentication, encryption, or rate limiting are missing, attackers can exploit the system. For instance, if a banking app does not verify user permissions properly, a normal user might gain admin access and change account details. Weak security rules make it easy for attackers to manipulate the system.</li>
+                    <li><b>Poor Business Logic</b>: Business logic defines how an application functions, but if it’s poorly designed, attackers can take advantage of loopholes. For example, if an online voting system allows users to vote multiple times just by refreshing the page, it can be misused. Similarly, a shopping website that does not validate payment status properly might let users place orders without paying. Such issues arise when developers focus only on making the system work without considering how it can be abused.</li>
+                </ol><br>
+                <span class="highlight">Real World Example Scenario:</span><br><br>
+                <ul>
+                    <li>In October 2024, security researcher Laxman Muthiyah discovered a significant vulnerability in Instagram's password recovery process. When users opted to reset their password via mobile, Instagram sent a six-digit code to their phone. An attacker could potentially guess this code by attempting all 1,000,000 possible combinations. Although Instagram had rate limiting to prevent such brute-force attacks, Muthiyah found that by using multiple IP addresses and sending concurrent requests—a technique known as a race condition—he could bypass these limitations. This method allowed him to send a large number of code verification attempts without being blocked, making it feasible to hijack any Instagram account. Upon reporting this flaw, Instagram promptly addressed and fixed the issue, rewarding Muthiyah $30,000 through their bug bounty program.</li>
+                </ul><br>
+                <span class="highlight">Countermeasures:</span>
+                <br><br>
+                <ol>
+                    <li>Implement Threat Modelling by identifying potential attack scenarios using STRIDE, MITRE ATT&CK, or DFDs (Data Flow Diagrams).</li>
+                    <li>Apply Secure Design principles such as Least privilege.</li>
+                    <li>When you are testing application and disable some features for ease of testing then make sure you re-enable them before deploying application.</li>
+                    <li>Implement role-based access control (RBAC) or attribute-based access control (ABAC) and use multi-factor authentication (MFA) to protect user accounts.</li>
+                    <li>Use Secure Software Development Lifecycle (SDLC).</li>
+                    <li>Enable logging and monitoring and make sure to timely respond on security issues.</li>
+                </ol> <br><br>
+                <span class="highlight">To better understand, let's look at an example of both vulnerable and secure code for Insecure design:</span><br><br>
+                <ul>
+                    <li><b><u>Vulnerable code</u></b> -> In vulnerable code there is no rate limiting, allowing attackers to try multiple passwords which leads to brute-force attack. No account lockout mechanism after repeated failures and attackers can use scripts to guess passwords endlessly until they find the correct one.</li><br>
+                    <li><b><u>Secure code</u></b> -> In secure code, only 5 login attempts per minute per IP is allowed. Attackers can’t keep guessing passwords endlessly and if they try to brute-force password using multiple IP address then it will cost high to attackers as only 5 attempts per IP is allowed. It provides better security without affecting normal users.</li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="code-examples">
+            <div class="code-block">
+                <h2>Vulnerable Code</h2>
+                <pre><code>
+@app.route("/login", methods=["POST"])
+def login():
+    username = request.form["username"]
+    password = request.form["password"]
+    user = db.get_user(username)
+    if user.password == password:
+        return "Login successful"
+    else:
+        return "Invalid credentials"                    
+                </code></pre>
+            </div>
+
+            <div class="code-block">
+                <h2>Secure Code</h2>
+                <pre><code>
+from flask_limiter import Limiter
+limiter = Limiter(app, key_func=lambda: request.remote_addr)
+@app.route("/login", methods=["POST"])
+@limiter.limit("5 per minute")
+def login():
+    username = request.form["username"]
+    password = request.form["password"]
+    user = db.get_user(username)
+    if user.password == password:
+        return "Login successful"
+    else:
+        return "Invalid credentials"
+                </code></pre>
+            </div>
+        </section>
+
+        <a class="practice-link" href="https://tryhackme.com/room/owasptop102021" target="_blank">Click to practice and improve</a>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2023 Security Insights. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

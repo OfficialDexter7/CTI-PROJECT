@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broken Access Control</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vuln1.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-title">
+            Broken Access Control - Vulnerability 1
+        </div>
+    </header>
+
+    <main class="site-content">
+        <section class="content-description">
+            <h1>Description of Broken Access Control Vulnerability</h1>
+            <p>
+                <span class="highlight">To clearly understand this vulnerability, it is important to first understand the following key terms:</span>
+                <br><br>
+                1. <span class="highlight">Authentication</span>: Verifies the identity of a user to ensure only legitimate users can access the system. Methods include passwords, biometrics, or tokens. For example, providing a username and password verifies the user's identity.
+                <br><br>
+                2. <span class="highlight">Session Management</span>: Handles user sessions securely after authentication. It ensures valid sessions, assigns unique session IDs, and prevents session hijacking. A <b>Session Token</b> helps authenticate automatically each time we make a request to authenticated pages, such as change password or payment pages.
+                <br><br>
+                3. <span class="highlight">Access Control</span>: Enforces rules to determine what authenticated users can do. It ensures users can only access data or perform actions they are authorized for. For example, a normal user can only view and modify their own account while keeping other users' accounts secure.
+                <u>Types of Access Control:</u>
+                <ul>
+                    <li><u>Vertical Access Control</u>: Controls access based on privilege levels (e.g., a regular user cannot access admin-only pages).</li>
+                    <li><u>Horizontal Access Control</u>: Controls access to resources of other users with the same privilege level (e.g., User A cannot view User B's private files).</li>
+                    <li><u>Context-Dependent Access Control</u>: Restricts access based on specific conditions (e.g., a user can only edit their profile during working hours).</li>
+                </ul>
+                <br>
+                <span class="highlight">Broken Access Control</span>: This vulnerability arises when users can act outside of their intended permissions. This typically leads to sensitive information disclosure, unauthorized access, and modification or destruction of data.
+                <span>Types of Broken Access Control:</span>
+                <ul>
+                    <li><u>Vertical Privilege Escalation</u>: Low-privilege users accessing high-privilege functions (e.g., a regular user accessing admin dashboards).</li>
+                    <li><u>Horizontal Privilege Escalation</u>: A user accessing another user's data (e.g., User A viewing User B's private files).</li>
+                    <li><u>Access Control Vulnerability in Multi-Step Processes</u>: Exploiting access flaws across multiple steps (e.g., skipping steps in a checkout process).</li>
+                </ul>
+                <br>
+                <span class="highlight">Countermeasures:</span>
+                <ol>
+                    <li>Use Role-Based Access Control (RBAC) to assign least privilege access.</li>
+                    <li>Implement Multi-Factor Authentication (MFA).</li>
+                    <li>Log and audit access control failures.</li>
+                    <li>Enforce server-side access control rules.</li>
+                    <li>Except for public resources, deny access by default.</li>
+                    <li>Use security-centric design where access is verified first and ensure all requests go through an access control check.</li>
+                </ol>
+                <br>
+                <span class="highlight">To better understand, let's look at an example of both vulnerable and secure code:</span>
+                <ul>
+                    <li><b><u>Vulnerable Code</u></b>: While deleting a user, there are no checks for user role or login. The user role must be "Admin," or the user whose account is set to delete must be logged in. In this code, while deleting a user, the function simply fetches the database for the existence of the user and deletes it directly if found. If the user does not exist, it returns "User not found." In short, no security checks are performed.</li>
+                    <li><b><u>Secure Code</u></b>: While deleting a user, it first calls a function <b>is_admin()</b>, which checks if the action is performed by an Admin. If the user is an Admin, the account is fetched from the database and deleted. If the user is not an Admin, access to delete the account is restricted by default, and an HTTP 403 access denied error is returned.</li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="code-examples">
+            <div class="code-block">
+                <h2>Vulnerable Code</h2>
+                <pre><code>
+@app.route('/delete_user/<user_id>', methods=['POST'])
+def delete_user(user_id):
+    # No check for user role or login
+    user = get_user(user_id)
+    if user:
+        delete_user_from_db(user)
+        return "User deleted."
+    return "User not found."
+                </code></pre>
+            </div>
+
+            <div class="code-block">
+                <h2>Secure Code</h2>
+                <pre><code>
+@app.route('/delete_user/<user_id>', methods=['POST'])
+def delete_user(user_id):
+    if is_admin():  # Check if the user is an admin
+        user = get_user(user_id)
+        if user:
+            delete_user_from_db(user)
+            return "User deleted."
+        return "User not found."
+    return "Access Denied.", 403
+                </code></pre>
+            </div>
+        </section>
+
+        <a class="practice-link" href="https://portswigger.net/web-security/access-control" target="_blank">Click to practice and improve</a>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2023 Security Insights. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

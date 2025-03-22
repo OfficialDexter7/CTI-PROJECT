@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerable and Outdated Components</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vuln2.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-title">
+            Vulnerable and Outdated Components - Vulnerability 6
+        </div>
+    </header>
+
+    <main class="site-content">
+        <section class="content-description">
+            <h1>Description of Vulnerable and Outdated Components</h1>
+            <p>
+                <span class="highlight">To clearly understand this vulnerability, it is important to first understand the following key terms:</span>
+                <br><br>
+                1. <span class="highlight">Software Dependencies</span>: Third-party libraries or frameworks used in applications. If outdated, they can introduce security risks.
+                <br><br>
+                2. <span class="highlight">End-of-Life (EOL) Software</span>: Software versions no longer receiving security updates from vendors, making them vulnerable.
+                <br><br>
+                3. <span class="highlight">Patch Management</span>: The process of regularly updating software to fix vulnerabilities and improve security.
+                <br><br>
+                4. <span class="highlight">Common Vulnerabilities and Exposures (CVE)</span>: A database of publicly known security vulnerabilities in software components.
+                <br><br>
+                <span class="highlight">Vulnerable and Outdated Components</span>: This vulnerability occurs when applications use outdated software, libraries, or dependencies that contain security flaws.
+                <span>Common Risks:</span>
+                <ul>
+                    <li><u>Unpatched Libraries</u>: Using old versions of libraries that have known security vulnerabilities.</li>
+                    <li><u>Unsupported Software</u>: Running software versions that no longer receive security patches.</li>
+                    <li><u>Use of Deprecated Components</u>: Using outdated APIs or features removed in newer versions.</li>
+                    <li><u>Dependency Chain Attacks</u>: When a vulnerable library indirectly affects the entire application.</li>
+                </ul>
+                <br>
+                <span class="highlight">Countermeasures:</span>
+                <ol>
+                    <li>Regularly update all software components, including libraries and frameworks.</li>
+                    <li>Use automated tools like OWASP Dependency-Check to detect vulnerabilities.</li>
+                    <li>Monitor security advisories and apply patches promptly.</li>
+                    <li>Remove unnecessary or outdated dependencies from projects.</li>
+                    <li>Use only trusted sources for third-party software and avoid unverified libraries.</li>
+                </ol>
+                <br>
+                <span class="highlight">To better understand, let's look at an example of both vulnerable and secure configurations:</span>
+                <ul>
+                    <li><b><u>Vulnerable Configuration</u></b>: The application uses an outdated version of jQuery that has known security flaws. Attackers can exploit these vulnerabilities to launch attacks like Cross-Site Scripting (XSS).</li>
+                    <li><b><u>Secure Configuration</u></b>: The application ensures that all dependencies are regularly updated to the latest secure versions, reducing the risk of exploitation.</li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="code-examples">
+            <div class="code-container" style="display: flex; gap: 20px;">
+                <div class="code-block" style="flex: 1; overflow-x: auto;">
+                    <h2>Vulnerable Configuration</h2>
+                    <pre><code>
+&lt;!-- Using an outdated version of jQuery (Vulnerable) --&gt;
+&lt;script src="https://code.jquery.com/jquery-1.7.1.min.js"&gt;
+&lt;/script&gt;
+                    </code></pre>
+                </div>
+                
+                <div class="code-block" style="flex: 1; overflow-x: auto;">
+                    <h2>Secure Configuration</h2>
+                    <pre><code>
+&lt;!-- Using an updated version of jQuery (Secure) --&gt;
+&lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/0U6U3+Np5l9z5l5La5L5P5Xl5p5J5q5X5X5q5J5"
+        crossorigin="anonymous"&gt;
+&lt;/script&gt;
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <a class="practice-link" href="https://owasp.org/www-project-dependency-check/" target="_blank">Click to practice and improve</a>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2023 Security Insights. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

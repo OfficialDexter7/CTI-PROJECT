@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Injection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vuln2.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-title">
+            Injection - Vulnerability 3
+        </div>
+    </header>
+
+    <main class="site-content">
+        <section class="content-description">
+            <h1>Description of Injection Vulnerability</h1>
+            <p>
+                <span class="highlight">To clearly understand this vulnerability, it is important to first
+                    understand the following key terms:</span>
+                <br><br>
+                <ol>
+                    <li><span>Parameterized Query</span>: These are pre-defined database queries where user input is treated as data, not code, preventing malicious commands from being executed.</li>
+                    <li><span>Sanitizing Input</span>: Cleaning user input by removing or escaping special characters (like <, > or ') to prevent it from being misused.</li>
+                    <li><span>Dynamic Query Construction</span>: Building database queries by directly including user input, which is risky if the input isn't properly sanitized, as it can lead to injection attacks.</li>
+                </ol>
+                <br>
+                <span class="highlight">What is Injection Attack? :</span><br><br>
+                <ul>
+                    <li>An Injection vulnerability is a type of security flaw that occurs when untrusted data is sent to an interpreter as a part of command or query.</li>
+                    <li>It commonly targets databases, operating systems, or other applications that process user input.</li>
+                </ul><br>
+                <span class="highlight">Common types of Injection vulnerabilities:</span><br><br>
+                <ol>
+                    <li><b>SQL Injection</b>: Attackers send malicious SQL commands to manipulate a database. Example: Logging in with "' OR '1'='1" in the username field can bypass authentication if user input is not properly Sanitized or Parameterized.</li>
+                    <li><b>Command Injection</b>: Attackers run system commands on the server. Example: If a web form executes ping using user input, entering 127.0.0.1; then, rm -rf / can delete files.</li>
+                    <li><b>HTML Injection</b>: It occurs when attackers insert malicious HTML code into a web page, affecting how it is displayed or behaves. For example -> Attacker can insert html code in comment field of web application which then can be executed instead of displaying it as a plain text.</li>
+                    <li><b>LDAP Injection</b>: Exploiting LDAP queries to access or modify directory information. Example: Inputting "*)(&)" in a search field can retrieve unauthorized user details.</li>
+                </ol><br>
+                <span class="highlight">Example Scenarios:</span><br><br>
+                <ul>
+                    <li>A login form takes a username and password as input and constructs an SQL query without proper input sanitization. Username: <b>admin' OR '1'='1</b> and Password: <b>anything</b>, query becomes <b>SELECT * FROM users WHERE username = 'admin' OR '1'='1' AND password = 'anything'</b>, This always evaluates to true, bypassing authentication and granting unauthorized access.</li>
+                    <li>A web app provides a feature to ping an IP address. The input is directly used in a system command. If user inputs <b>127.0.0.1; rm -rf /</b>, command becomes <b>ping 127.0.0.1; rm -rf /</b> which allows the attacker to delete files on the server.</li>
+                    <li>A comment section displays user-submitted input without sanitization. If attacker inputs alert("Hacked") in "script" tag so Whenever other users view the page, the script runs in their browser, potentially stealing session cookies or performing unauthorized actions on their behalf.</li>
+                </ul><br>
+                <span class="highlight">Countermeasures:</span>
+                <br><br>
+                <ol>
+                    <li>Always check and validate user input to ensure it matches expected formats (e.g., numbers, emails).</li>
+                    <li>Use parameterized queries or prepared statements instead of directly inserting user input into queries.</li>
+                    <li>Sanitize input by escaping special characters (e.g., ‘, ;, <, >), so they aren’t treated as code.</li>
+                    <li>Use frameworks like Hibernate or SQLAlchemy that automatically handle queries securely.</li>
+                    <li>Limit database user permissions so attackers can't perform harmful actions, even if they exploit a vulnerability.</li>
+                    <li>Deploy a WAF to detect and block malicious injection attempts.</li>
+                </ol> <br><br>
+                <span class="highlight">To better understand, let's look at an example of both vulnerable and secure code for SQL injection:</span><br><br>
+                <ul>
+                    <li><b><u>Vulnerable code</u></b> -> The vulnerable code directly incorporates user input (user_input) into the SQL query without validation or sanitization. This makes the application susceptible to SQL Injection attacks. Malicious users can craft inputs like <b>' OR '1'='1</b> to manipulate the query logic and gain unauthorized access, retrieve sensitive data, or perform destructive actions on the database. For user_input = <b>"admin' OR '1'='1"</b>, the query becomes: <b>SELECT * FROM users WHERE username = 'admin' OR '1'='1'</b>. This query always evaluates as true, potentially granting access to all user data.</li><br>
+                    <li><b><u>Secure code</u></b> -> The secure code uses parameterized queries, where the user input is passed as a parameter instead of being directly embedded in the query. This approach ensures that the input is treated as data, not executable SQL, effectively neutralizing any malicious input. For the same user_input = <b>"admin' OR '1'='1"</b>, the query remains safe because the database driver escapes harmful characters: <b>SELECT * FROM users WHERE username = 'admin' 'OR' '1' '=' '1'</b>, Here, the input is treated as plain text, preventing SQL Injection. This is a best practice for secure database interactions.
+                    </li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="code-examples">
+            <div class="code-block">
+                <h2>Vulnerable Code</h2>
+                <pre><code>
+# User input is directly used in the query
+user_input = "admin' OR '1'='1"
+query = f"SELECT * FROM users WHERE username = '{user_input}'"
+cursor.execute(query)
+                </code></pre>
+            </div>
+
+            <div class="code-block">
+                <h2>Secure Code</h2>
+                <pre><code>
+# User input is safely passed as a parameter
+user_input = "admin"
+query = "SELECT * FROM users WHERE username = %s"
+cursor.execute(query, (user_input))
+                </code></pre>
+            </div>
+        </section>
+
+        <a class="practice-link" href="https://portswigger.net/web-security/sql-injection" target="_blank">Click to practice and improve</a>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2023 Security Insights. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

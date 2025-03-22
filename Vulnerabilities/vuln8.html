@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software and Data Integrity Failures</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vuln2.css">
+    <style>
+        .code-examples {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+        }
+        .code-block {
+            flex: 1;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 50%;
+            box-sizing: border-box;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-title">
+            Software and Data Integrity Failures - Vulnerability 8
+        </div>
+    </header>
+
+    <main class="site-content">
+        <section class="content-description">
+            <h1>Description of Software and Data Integrity Failures</h1>
+            <p>
+                <span class="highlight">Key terms related to this vulnerability:</span>
+                <br><br>
+                1. <span class="highlight">Data Integrity</span>: Ensuring that data is not altered or tampered with during transmission or storage.
+                <br><br>
+                2. <span class="highlight">Software Integrity</span>: Verifying that software updates and dependencies have not been modified maliciously.
+                <br><br>
+                3. <span class="highlight">Code Signing</span>: Using cryptographic signatures to verify the authenticity of software.
+                <br><br>
+                4. <span class="highlight">Supply Chain Attacks</span>: Exploiting vulnerabilities in software dependencies or third-party services.
+                <br><br>
+                <span class="highlight">Software and Data Integrity Failures</span>: This vulnerability arises when applications do not properly verify the integrity of software updates, critical data, or third-party dependencies, leading to potential exploitation.
+                <span>Common Risks:</span>
+                <ul>
+                    <li><u>Unverified Software Updates</u>: Installing updates without validating their integrity.</li>
+                    <li><u>Insecure Deserialization</u>: Accepting untrusted serialized objects that could lead to remote code execution.</li>
+                    <li><u>Compromised Dependencies</u>: Using third-party libraries without verifying their security.</li>
+                    <li><u>Lack of Code Signing</u>: Running unsigned or tampered software.</li>
+                </ul>
+                <br>
+                <span class="highlight">Countermeasures:</span>
+                <ol>
+                    <li>Use digital signatures to verify software integrity.</li>
+                    <li>Ensure secure update mechanisms with integrity checks.</li>
+                    <li>Validate and audit third-party dependencies regularly.</li>
+                    <li>Implement secure deserialization techniques.</li>
+                    <li>Enforce strict access control on critical software components.</li>
+                </ol>
+                <br>
+                <span class="highlight">Example of both vulnerable and secure implementations:</span>
+                <ul>
+                    <li><b><u>Vulnerable Code</u></b>: The application downloads and installs updates without verifying their integrity.</li>
+                    <li><b><u>Secure Code</u></b>: The application checks for valid digital signatures before installing updates.</li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="code-examples">
+            <div class="code-block">
+                <h2>Vulnerable Code</h2>
+                <pre><code>
+# Downloads and installs updates without integrity checks (Vulnerable)
+def install_update(url):
+    response = requests.get(url)
+    with open("update.exe", "wb") as file:
+        file.write(response.content)  # No integrity verification
+    os.system("update.exe")
+                </code></pre>
+            </div>
+            
+            <div class="code-block">
+                <h2>Secure Code</h2>
+                <pre><code>
+import hashlib
+
+# Verifies digital signature before installing updates (Secure)
+def install_update(url, expected_hash):
+    response = requests.get(url)
+    file_data = response.content
+    file_hash = hashlib.sha256(file_data).hexdigest()
+    
+    if file_hash == expected_hash:  # Ensure integrity
+        with open("update.exe", "wb") as file:
+            file.write(file_data)
+        os.system("update.exe")
+    else:
+        print("Update verification failed!")
+                </code></pre>
+            </div>
+        </section>
+
+        <a class="practice-link" href="https://www.wallarm.com/what/a04-2021-owasp-software-and-data-integrity-failures" target="_blank">Click to practice and improve</a>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2023 Security Insights. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identification and Authentication Failures</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vuln2.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-title">
+            Identification and Authentication Failures - Vulnerability 7
+        </div>
+    </header>
+
+    <main class="site-content">
+        <section class="content-description">
+            <h1>Description of Identification and Authentication Failures</h1>
+            <p>
+                <span class="highlight">Key terms related to this vulnerability:</span>
+                <br><br>
+                1. <span class="highlight">Identification</span>: The process of uniquely recognizing a user before authentication.
+                <br><br>
+                2. <span class="highlight">Authentication</span>: The method used to verify the identity of a user, such as passwords, biometrics, or OTPs.
+                <br><br>
+                3. <span class="highlight">Multi-Factor Authentication (MFA)</span>: An authentication method that requires multiple verification factors to enhance security.
+                <br><br>
+                4. <span class="highlight">Session Management</span>: The mechanism used to maintain a user's authenticated session securely.
+                <br><br>
+                <span class="highlight">Identification and Authentication Failures</span>: This vulnerability occurs when authentication mechanisms are weak, allowing attackers to bypass authentication and gain unauthorized access.
+                <span>Common Risks:</span>
+                <ul>
+                    <li><u>Weak Password Policies</u>: Allowing short or predictable passwords.</li>
+                    <li><u>Exposed Credentials</u>: Storing passwords in plaintext or sending them over insecure connections.</li>
+                    <li><u>Brute Force Attacks</u>: Attackers guessing passwords through automated tools.</li>
+                    <li><u>Session Fixation</u>: Reusing session IDs to hijack authenticated sessions.</li>
+                </ul>
+                <br>
+                <span class="highlight">Countermeasures:</span>
+                <ol>
+                    <li>Implement strong password policies and enforce complexity rules.</li>
+                    <li>Use Multi-Factor Authentication (MFA) to strengthen authentication.</li>
+                    <li>Secure session management by using short-lived, randomly generated session IDs.</li>
+                    <li>Encrypt sensitive authentication data in transit and at rest.</li>
+                    <li>Limit failed login attempts and implement CAPTCHA for bots.</li>
+                </ol>
+                <br>
+                <span class="highlight">Example of both vulnerable and secure authentication implementations:</span>
+                <ul>
+                    <li><b><u>Vulnerable Authentication</u></b>: The application allows weak passwords, stores them in plaintext, and does not limit failed login attempts.</li>
+                    <li><b><u>Secure Authentication</u></b>: The application enforces strong passwords, securely hashes passwords, and implements account lockout on multiple failed attempts.</li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="code-examples">
+            <div class="code-container" style="display: flex; gap: 20px;">
+                <div class="code-block" style="flex: 1; overflow-x: auto;">
+                    <h2>Vulnerable Authentication</h2>
+                    <pre><code>
+# Allows weak passwords and stores them in plaintext (Vulnerable)
+def register(username, password):
+    with open("users.txt", "a") as file:
+        file.write(f"{username}:{password}\n")  # Storing passwords in plaintext
+    return "User registered."
+                    </code></pre>
+                </div>
+                
+                <div class="code-block" style="flex: 1; overflow-x: auto;">
+                    <h2>Secure Authentication</h2>
+                    <pre><code>
+import bcrypt
+
+# Enforces strong passwords and hashes them securely (Secure)
+def register(username, password):
+    hashed_pw = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    with open("users.txt", "a") as file:
+        file.write(f"{username}:{hashed_pw.decode()}\n")  # Storing hashed passwords
+    return "User registered securely."
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <a class="practice-link" href="https://www.securityjourney.com/post/owasp-top-10-identification-and-authentication-failures" target="_blank">Click to practice and improve</a>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2023 Security Insights. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server-Side Request Forgery (SSRF)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .content-description {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .highlight {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        .code-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .code-block {
+            width: 45%;
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: "Courier New", Courier, monospace;
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .practice-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #ff4d4d;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .practice-link:hover {
+            background: #cc0000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">Server-Side Request Forgery (SSRF) - Vulnerability 10</div>
+
+    <section class="content-description">
+        <h1>What is Server-Side Request Forgery (SSRF)?</h1>
+        <p>
+            <span class="highlight">Server-Side Request Forgery (SSRF)</span> is a web security vulnerability that
+            allows attackers to send crafted requests from a vulnerable server. This can be exploited to gain access to
+            internal systems, retrieve sensitive data, or even interact with cloud metadata services.
+        </p>
+        <br>
+        <h2>⚠ Why is this a Risk?</h2>
+        <ul>
+            <li>Attackers can bypass firewalls and access internal servers.</li>
+            <li>It can be used to steal cloud credentials via metadata services (e.g., AWS IMDS).</li>
+            <li>Leads to internal data exposure and further attacks like RCE (Remote Code Execution).</li>
+        </ul>
+        <br>
+        <h2>🔍 Real-World Example</h2>
+        <p>
+            In 2019, Capital One suffered a major data breach due to SSRF. An attacker used SSRF to access AWS
+            instance metadata, steal credentials, and retrieve 100M+ customer records.
+        </p>
+        <br>
+        <h2>✅ Mitigation Strategies</h2>
+        <ol>
+            <li>Use allowlists to restrict allowed external URLs.</li>
+            <li>Block access to internal IP ranges (e.g., `169.254.169.254` for AWS metadata).</li>
+            <li>Validate and sanitize user inputs properly.</li>
+            <li>Use Web Application Firewalls (WAF) to detect SSRF attempts.</li>
+        </ol>
+    </section>
+
+    <section class="code-examples">
+        <div class="code-container">
+            <div class="code-block">
+                <h2>Vulnerable Code ❌</h2>
+                <pre><code>
+import requests
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/fetch', methods=['GET'])
+def fetch():
+    url = request.args.get('url')
+    response = requests.get(url)  # No validation, attacker can request internal services
+    return response.text
+
+# Run Flask server
+if __name__ == '__main__':
+    app.run(debug=True)
+                </code></pre>
+            </div>
+
+            <div class="code-block">
+                <h2>Secure Code ✅</h2>
+                <pre><code>
+import requests
+from flask import Flask, request
+from urllib.parse import urlparse
+
+app = Flask(__name__)
+
+# Define an allowlist of domains
+ALLOWED_DOMAINS = ["https://example.com", "https://api.example.com"]
+
+def is_url_allowed(url):
+    parsed_url = urlparse(url)
+    return any(parsed_url.netloc == urlparse(domain).netloc for domain in ALLOWED_DOMAINS)
+
+@app.route('/fetch', methods=['GET'])
+def fetch():
+    url = request.args.get('url')
+
+    if not is_url_allowed(url):
+        return "Error: URL not allowed", 403
+
+    response = requests.get(url)
+    return response.text
+
+# Run Flask server
+if __name__ == '__main__':
+    app.run(debug=True)
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <a class="practice-link" href="https://portswigger.net/web-security/ssrf" target="_blank">Practice and Learn More</a>
+
+</body>
+
+</html>

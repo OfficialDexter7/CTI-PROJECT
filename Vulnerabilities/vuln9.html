@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Logging and Monitoring Failures</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vuln2.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .content-description {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        .code-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .code-block {
+            width: 45%;
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: "Courier New", Courier, monospace;
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .practice-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #ffcc00;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .practice-link:hover {
+            background: #e6b800;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">Security Logging and Monitoring Failures - Vulnerability 9</div>
+
+    <section class="content-description">
+        <h1>What is Security Logging and Monitoring Failure?</h1>
+        <p>
+            <span class="highlight">Security Logging and Monitoring Failures</span> occur when applications lack proper
+            mechanisms to track and detect security events. Without adequate logs and monitoring, organizations struggle
+            to identify cyber threats, leading to delayed incident response and potential data breaches.
+        </p>
+        <br>
+        <h2>⚠ Why is this a Risk?</h2>
+        <ul>
+            <li>Insufficient or missing security logs make attack detection difficult.</li>
+            <li>Delayed incident response due to lack of real-time monitoring.</li>
+            <li>Failure to comply with security regulations (e.g., GDPR, ISO 27001).</li>
+            <li>Attackers can erase traces of intrusion if logs are not properly maintained.</li>
+        </ul>
+        <br>
+        <h2>🔍 Real-World Example</h2>
+        <p>
+            In 2017, a major <b>Equifax data breach</b> occurred because of poor logging practices. Attackers exploited a
+            vulnerability in the system and exfiltrated sensitive customer data. The company failed to detect the breach
+            for over <b>76 days</b> due to missing security monitoring.
+        </p>
+        <br>
+        <h2>✅ Mitigation Strategies</h2>
+        <ol>
+            <li>Enable <b>detailed security logging</b> for all authentication and access attempts.</li>
+            <li>Use <b>Security Information and Event Management (SIEM)</b> tools for real-time monitoring.</li>
+            <li>Implement <b>alerting mechanisms</b> for multiple failed login attempts.</li>
+            <li>Regularly review and audit logs to detect anomalies.</li>
+        </ol>
+    </section>
+
+    <section class="code-examples">
+        <div class="code-container">
+            <div class="code-block">
+                <h2>Vulnerable Code ❌</h2>
+                <pre><code>
+# No logging for failed authentication attempts
+def authenticate(username, password):
+    if username == "admin" and password == "password123":
+        return "Login successful"
+    else:
+        return "Invalid credentials"  # No logs recorded, making attacks undetectable
+                </code></pre>
+            </div>
+
+            <div class="code-block">
+                <h2>Secure Code ✅</h2>
+                <pre><code>
+import logging
+
+# Configuring logging system
+logging.basicConfig(filename="security.log", level=logging.INFO,
+                    format="%(asctime)s - %(levelname)s - %(message)s")
+
+def authenticate(username, password):
+    if username == "admin" and password == "password123":
+        logging.info(f"Successful login attempt - User: {username}")
+        return "Login successful"
+    else:
+        logging.warning(f"Failed login attempt - User: {username}")
+        return "Invalid credentials"
+
+# Example usage
+authenticate("admin", "wrongpassword")
+authenticate("admin", "password123")
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <a class="practice-link" href="https://foresite.com/blog/owasp-top-ten-9-security-logging-and-monitoring-failures/" target="_blank">Practice and Learn More</a>
+
+</body>
+
+</html>

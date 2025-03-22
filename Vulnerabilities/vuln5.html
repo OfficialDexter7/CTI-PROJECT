@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Misconfiguration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vuln2.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-title">
+            Security Misconfiguration - Vulnerability 5
+        </div>
+    </header>
+
+    <main class="site-content">
+        <section class="content-description">
+            <h1>Description of Security Misconfiguration</h1>
+            <p>
+                <span class="highlight">To clearly understand this vulnerability, it is important to first understand the following key terms:</span>
+                <br><br>
+                1. <span class="highlight">Configuration Management</span>: The process of handling security settings across applications, servers, and infrastructure to prevent unintended exposure.
+                <br><br>
+                2. <span class="highlight">Default Credentials</span>: Factory-set usernames and passwords that should be changed immediately upon deployment to prevent unauthorized access.
+                <br><br>
+                3. <span class="highlight">Unpatched Software</span>: Running outdated or vulnerable software versions that attackers can exploit.
+                <br><br>
+                4. <span class="highlight">Debugging Features</span>: Development tools or error messages that expose sensitive system details when left enabled in production environments.
+                <br><br>
+                <span class="highlight">Security Misconfiguration</span>: This vulnerability occurs when security settings are not properly implemented, exposing systems to unauthorized access, data leaks, and exploitation.
+                <span>Common Security Misconfigurations:</span>
+                <ul>
+                    <li><u>Using Default Credentials</u>: Leaving factory-set passwords on admin panels, databases, or APIs.</li>
+                    <li><u>Exposed Debugging Tools</u>: Displaying detailed error messages that provide attackers insights into the system.</li>
+                    <li><u>Improper Cloud Storage Permissions</u>: Publicly accessible storage buckets or misconfigured API keys.</li>
+                    <li><u>Unpatched or Outdated Components</u>: Failing to update software, libraries, or frameworks leading to known vulnerabilities.</li>
+                    <li><u>Misconfigured Security Headers</u>: Missing or weak HTTP security headers that allow attacks like clickjacking and cross-site scripting (XSS).</li>
+                </ul>
+                <br>
+                <span class="highlight">Countermeasures:</span>
+                <ol>
+                    <li>Change default credentials immediately after installation.</li>
+                    <li>Regularly update and patch all software, libraries, and dependencies.</li>
+                    <li>Disable debugging and verbose error messages in production environments.</li>
+                    <li>Use automated security tools to scan for misconfigurations.</li>
+                    <li>Apply the principle of least privilege (PoLP) for user roles and access.</li>
+                </ol>
+                <br>
+                <span class="highlight">To better understand, let's look at an example of both vulnerable and secure configurations:</span>
+                <ul>
+                    <li><b><u>Vulnerable Configuration</u></b>: The server configuration allows directory indexing and lacks proper security headers. Attackers can browse files and exploit missing headers for attacks like clickjacking or cross-site scripting (XSS).</li>
+                    <li><b><u>Secure Configuration</u></b>: The server configuration disables directory listing, restricts access by default, and enforces security headers to protect against common attacks.</li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="code-examples">
+            <div class="code-block">
+                <h2>Vulnerable Configuration</h2>
+                <pre><code>
+# Apache HTTP Server Configuration (Vulnerable)
+&lt;Directory /var/www/html&gt;
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+&lt;/Directory&gt;
+
+# No security headers, allowing clickjacking and XSS
+Header unset X-Frame-Options
+Header unset X-XSS-Protection
+                </code></pre>
+            </div>
+
+            <div class="code-block">
+                <h2>Secure Configuration</h2>
+                <pre><code>
+# Apache HTTP Server Configuration (Secure)
+&lt;Directory /var/www/html&gt;
+    Options -Indexes -FollowSymLinks
+    AllowOverride All
+    Require all denied
+&lt;/Directory&gt;
+
+# Enforcing strong security headers
+Header always set X-Frame-Options "DENY"
+Header always set X-XSS-Protection "1; mode=block"
+                </code></pre>
+            </div>
+        </section>
+
+        <a class="practice-link" href="https://medium.com/%40madhuhack01/owasp-top-10-a05-2021-security-misconfiguration-6e3308c24994" target="_blank">Click to practice and improve</a>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2023 Security Insights. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

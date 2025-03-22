@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographic Failures</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vuln2.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-title">
+            Cryptographic Failures - Vulnerability 2
+        </div>
+    </header>
+
+    <main class="site-content">
+        <section class="content-description">
+            <h1>Description of Cryptographic Failures Vulnerability</h1>
+            <p>
+                <span class="highlight">Why does this happen?</span> :
+                <br><br>
+                1. <span class="highlight">Data not protected in transit</span>: If data moves over the internet without encryption, attackers can easily see it using Man In The Middle attack. For Example -> Using HTTP instead of HTTPS makes application vulnerable to attack.<br><br>
+                2. <span class="highlight">Using Old or Weak algorithms</span>: Using outdated encryption methods like MD5 or SHA1 makes it easier for attackers to break the encryption.<br><br>
+                3. <span class="highlight">Hardcoded Keys or Passwords</span>: Storing secret keys or passwords in the code makes it easy for attacker to find them. For Example -> When in testing phase developer can comment down keys or passwords in source code and at the time of deployment they forget to remove it from code which then can be exploited by attacker.<br><br>
+                4. <span class="highlight">Poor key management</span>: Not rotating keys or reusing old ones can expose data to attacks.<br><br>
+                5. <span class="highlight">Improper error handling</span>: Detailed error messages can give attackers clues to break encryption.<br><br>
+
+                <span class="highlight">Cryptographic Failures</span>: Cryptographic failures, previously known as Sensitive Data Exposure in the OWASP Top 10 2017, refer to the improper implementation or use of cryptography, leading to the exposure or compromise of sensitive data. This vulnerability arises when cryptographic methods fail to protect data. <b>Impact -></b> Cryptographic failures can lead to unauthorized access, data theft, or modification of sensitive information such as passwords, credit card numbers, or personal information, violating compliance regulations like GDPR or PCI DSS.<br><br>
+                <span>Example Attack Scenarios:</span><br>
+                <ul>
+                    <li>Credit card numbers are encrypted in a database but automatically decrypted when accessed. If an application has a SQL injection vulnerability, an attacker can query the database to retrieve credit card numbers in plain text. It can be prevented using application-layer encryption where data is only decrypted when authorized by application logic which can be login method.</li>
+                    <li>Passwords are stored in database using weak or unsalted hash functions like MD5. If the database is leaked, attackers can use rainbow tables (precomputed hashes) or GPU power (Brute Force) to crack the passwords. To prevent this you can use strong hashing algorithms like bcrypt, Argon2, etc with salting.</li>
+                </ul><br>
+                <span class="highlight">Countermeasures:</span>
+                <ol>
+                    <li>Use strong algorithms like AES for encryption and bcrypt, Argon2, or PBKDF2 for hashing.</li>
+                    <li>Store keys securely using Hardware Security Modules (HSMs) or Key Management Services(KMS).</li>
+                    <li>Implement salting and key stretching.</li>
+                    <li>Use HTTPS instead of HTTP.</li>
+                    <li>Avoid Hardcoded Secrets.</li>
+                    <li>Regularly update cryptographic libraries.</li>
+                    <li>Perform security audits.</li>
+                </ol> <br>
+                <span class="highlight">To better understand, let's look at an example of both vulnerable and secure code:</span><br><br>
+                <ul>
+                    <li><b><u>Vulnerable code</u></b> -> In this code, MD5 hash is used to create hash of password. MD5 is cryptographically broken and prone to collision attacks, where two different inputs produce the same hash. The hash is deterministic; if two users have the same password, the hash will be the same, making it easier to attack. MD5 is very fast, which is a disadvantage for password hashing as attackers can brute force or compute millions of hashes per second. An attacker who gains access to the hashed password can use precomputed rainbow tables or perform a brute force attack to crack the password. </li>
+                    <li><b><u>Secure code</u></b> -> In this code, bcrypt with salting is used. Every hash is unique because of the random salt, preventing rainbow table attacks. bcrypt is intentionally slow, making brute force attacks computationally expensive. Even if two users have the same password, their hashes will differ because of the random salt. Slowness ensures that attackers need significantly more time to crack a password.
+                    </li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="code-examples">
+            <div class="code-block">
+                <h2>Vulnerable Code</h2>
+                <pre><code>
+import hashlib
+
+# Vulnerable: MD5 is outdated and vulnerable to collision attacks
+password = input("Your Password :")
+hashed_password = hashlib.md5(password.encode()).hexdigest()
+
+print("MD5 Hashed Password:", hashed_password)
+                </code></pre>
+            </div>
+
+            <div class="code-block">
+                <h2>Secure Code</h2>
+                <pre><code>
+from bcrypt import hashpw, gensalt
+
+# Secure: Use bcrypt with a salt
+password = input("Your Password :")
+hashed_password = hashpw(password.encode(), gensalt())
+
+print("Bcrypt Hashed Password:", hashed_password)
+                </code></pre>
+            </div>
+        </section>
+
+        <a class="practice-link" href="https://www.pentestpeople.com/blog-posts/owasp-top-ten-cryptographic-failures" target="_blank">Click to practice and improve</a>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2023 Security Insights. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
