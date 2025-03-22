@@ -28,7 +28,63 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="CyberGuard\static\index.html">Dashboard</a></li>
+                <li class="cyberhub-dropdown">
+                    <a href="#" onclick="toggleCyberhub()">CyberHub ⬇</a>
+                    <div class="dropdown" id="cyberhubMenu">
+                        <a href="Functionalities\scanner_backend\scanner.html">🛡️ Virus Scanner</a>
+                        <a href="/code-scanner">💻 Code Scanner</a>
+                        <a href="Quiz Game\index.html">🎮 Quiz Game</a>
+                        <li><a href="CyberGuard\static\index.html">Logout</a></li>
+                    </div>
+                </li>
+
+                <style>
+                    .cyberhub-dropdown {
+                        position: relative;
+                    }
+                
+                    .dropdown {
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        background: #444;
+                        min-width: 180px;
+                        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+                        border-radius: 5px;
+                        z-index: 1000;
+                    }
+                
+                    .dropdown a {
+                        display: block;
+                        padding: 10px;
+                        color: white;
+                        text-decoration: none;
+                    }
+                
+                    .dropdown a:hover {
+                        background: #ffffff;
+                    }
+                </style>
+                
+                <script>
+                    function toggleCyberhub() {
+                        var dropdown = document.getElementById("cyberhubMenu");
+                        dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+                    }
+                
+                    // Close dropdown when clicking outside
+                    document.addEventListener("click", function(event) {
+                        var dropdown = document.getElementById("cyberhubMenu");
+                        var cyberhubLink = document.querySelector(".cyberhub-dropdown a");
+                
+                        if (!cyberhubLink.contains(event.target) && !dropdown.contains(event.target)) {
+                            dropdown.style.display = "none";
+                        }
+                    });
+                </script>
+            </ul>
             </ul>
             <button id="open-menu-btn"><i class="uil uil-bars"></i></i></button>
             <button id="close-menu-btn"><i class="uil uil-multiply"></i></i></button>
@@ -39,41 +95,28 @@
     <section class="about__achievement">
         <div class="container about__achievements-container">
             <div class="about__achievements-left">
-                <img src="images/about achievements.svg">
+                <!-- <img src="images/about achievements.svg"> -->
             </div>
 
             <div class="about__achievements-right">
-                <h1>About Us</h1>
+                <h1 style="text-align: center;">About Us</h1>
                 <p style="text-align: justify;">
                     At Cyber Threat Intelligence, we are committed to safeguarding your digital world by providing comprehensive Cyber Threat Intelligence solutions. Our platform is meticulously designed to address the most critical security risks identified by the OWASP Top 10 Vulnerabilities, ensuring robust protection against evolving cyber threats.  
                 
                     We understand the ever-growing complexity of cybersecurity challenges. Our mission is to empower organizations and individuals with actionable intelligence, proactive threat detection, and effective vulnerability management. By leveraging advanced security practices and cutting-edge technology, we help you stay one step ahead of malicious actors. 
                 </p>
-                
-                    <!-- <div class="achievements__cards">
-                        <article class="achievement__card">
-                            <span class="achievement__icon">
-                                <i class="uil uil-video"></i>
-                            </span>
-                            <h3>450+</h3>
-                            <p>Courses</p>
-                        </article>
 
-                        <article class="achievement__card">
-                            <span class="achievement__icon">
-                                <i class="uil uil-users-alt"></i>
-                            </span>
-                            <h3>75000+</h3>
-                            <p>Students</p>
-                        </article>
+                <p>
 
-                        <article class="achievement__card">
-                            <span class="achievement__icon">
-                                <i class="uil uil-trophy"></i>
-                            </span>
-                            <h3>26+</h3>
-                            <p>Awards</p> -->
-                    </article>
+                    <h1 style="text-align: center;">Vision</h1> 
+                    <p>Our vision is to empower organizations with real-time, data-driven cybersecurity insights to proactively detect, analyze, and mitigate evolving threats. By leveraging advanced analytics, machine learning, and threat intelligence feeds, our platform provides actionable intelligence to safeguard digital assets. We aim to bridge the gap between security operations and threat intelligence, enabling businesses to stay ahead of cyber adversaries. With an intuitive interface, seamless integrations, and automated risk assessments, our platform enhances threat visibility and response efficiency. Our commitment is to create a secure digital ecosystem where organizations can operate with confidence, resilience, and proactive defense against cyber threats.</p>
+                    <style>
+                        p {
+                            text-align: justify;
+                        }
+                    </style>
+                </p>
+                   </article>
 
                 </div>
             </div>
@@ -91,7 +134,7 @@
                 </div>
                 <div class="team__member-info">
                     <h4>Harsh Kachare</h4>
-                    <p>Software Engineer</p>
+                    <p>Frontend Developer</p>
                 </div>  
                 <div class="team__member-socials">
                     <a href="https://instagram.com" target="blank"><i class="uil uil-instagram-alt"></i></a>
@@ -162,30 +205,12 @@
             <p>
                 2023 Cyber Threat Intelligence. All rights reserved.
             </p>
-        </div>
-
-        <div class="footer__2">
-            <h4>Permalinks</h4>
-            <ul class="permalinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-            </ul>
-        </div>
-
-        <div class="footer__3">
-            <h4>Privacy</h4>
-            <ul class="permalinks">
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms and Conditions</a></li>
-            </ul>
-        </div>
+        </div>  
 
         <div class="footer__4">
             <h4>Contact Us</h4>
             <div>
-                <p>Phone : +91 123456789</p>
+                <p>Phone : +91 0123456789</p>
                 <p>Email : cyberthreatintelligence@gmail.com</p>
             </div>
         
