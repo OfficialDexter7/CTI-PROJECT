@@ -27,7 +27,62 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="CyberGuard\static\index.html">Dashboard</a></li>
+                <li class="cyberhub-dropdown">
+                    <a href="#" onclick="toggleCyberhub()">CyberHub ⬇</a>
+                    <div class="dropdown" id="cyberhubMenu">
+                        <a href="Functions\Code_Scanner\scanner.html">🛡️ Code Scanner</a>
+                        <a href="Functions\VirusTotalScanner\frontend\index.html">💻 Virus Scanner</a>
+                        <a href="Quiz Game\index.html">🎮 Quiz Game</a>
+                        <li><a href="CyberGuard\static\index.html">Logout</a></li>
+                    </div>
+                </li>
+                
+                <style>
+                    .cyberhub-dropdown {
+                        position: relative;
+                    }
+                
+                    .dropdown {
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        background: #444;
+                        min-width: 180px;
+                        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+                        border-radius: 5px;
+                        z-index: 1000;
+                    }
+                
+                    .dropdown a {
+                        display: block;
+                        padding: 10px;
+                        color: white;
+                        text-decoration: none;
+                    }
+                
+                    .dropdown a:hover {
+                        background: #ffffff;
+                    }
+                </style>
+                
+                <script>
+                    function toggleCyberhub() {
+                        var dropdown = document.getElementById("cyberhubMenu");
+                        dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+                    }
+                
+                    // Close dropdown when clicking outside
+                    document.addEventListener("click", function(event) {
+                        var dropdown = document.getElementById("cyberhubMenu");
+                        var cyberhubLink = document.querySelector(".cyberhub-dropdown a");
+                
+                        if (!cyberhubLink.contains(event.target) && !dropdown.contains(event.target)) {
+                            dropdown.style.display = "none";
+                        }
+                    });
+                </script>
             </ul>
             <button id="open-menu-btn"><i class="uil uil-bars"></i></i></button>
             <button id="close-menu-btn"><i class="uil uil-multiply"></i></i></button>
@@ -37,7 +92,6 @@
     
     <!--===============================END OF NAVBAR================================-->
 
-
     <header>
         <div class="container header_container">
             <div class="header__left">
@@ -45,7 +99,7 @@
                 <p>
                     Stay ahead of evolving threats with real-time insights and proactive security measures. Protect, detect, and respond with confidence.
                 </p>
-                <a href="index.html" class="btn btn-primary">Get Started</a>
+                <!-- <a href="index.html" class="btn btn-primary">Get Started</a> -->
             </div>
             <div class="header_right">
                 <div class="header_right-image">
@@ -71,6 +125,7 @@
                     </span>
                     <h5>Broken Access Control</h5>
                     <p>Improperly enforced restrictions on user actions, leading to unauthorized access to resources or functions.</p>
+                    <a href="Vulnerabilities\vuln1.html" class="category__link">Learn More</a>
                 </article>
 
                     <article class="category">
@@ -78,6 +133,8 @@
                         </span>
                         <h5>Cryptographic Failures</h5>
                         <p>Weaknesses in the implementation of cryptography, such as poor key management or outdated algorithms, compromising sensitive data.</p>
+                        <a href="Vulnerabilities\vuln2.html" class="category__link">Learn More</a>
+
                     </article>
 
                         <article class="category">
@@ -85,6 +142,8 @@
                             </span>
                             <h5>Injection</h5>
                             <p>Unsanitized user input is executed as part of a query or command, allowing attackers to manipulate databases or systems.</p>
+                            <a href="Vulnerabilities\vuln3.html" class="category__link">Learn More</a>
+
                         </article>
 
                     
@@ -93,6 +152,8 @@
                             </span>
                             <h5>Insecure Design</h5>
                             <p>Applications are designed with flaws or without considering security threats, leading to exploitable vulnerabilities</p>
+                            <a href="Vulnerabilities\vuln4.html" class="category__link">Learn More</a>
+
                         </article>
 
                     
@@ -101,6 +162,8 @@
                             </span>
                             <h5>Security Misconfigurations</h5>
                             <p>Incorrect configuration of security controls, leaving systems exposed to attacks.</p>
+                            <a href="Vulnerabilities\vuln5.html" class="category__link">Learn More</a>
+
                         </article>
 
                     
@@ -109,6 +172,7 @@
                             </span>
                             <h5>Vulnerable and Outdated Components</h5>
                             <p>Use of outdated libraries or software that contain known security flaws.</p>
+                            <a href="Vulnerabilities\vuln6.html" class="category__link">Learn More</a>
                         </article>
 
                         <article class="category">
@@ -116,6 +180,8 @@
                             </span>
                             <h5>Identification and Authentication Failures</h5>
                             <p>Inadequate protection of software and data from tampering or unauthorized changes.</p>
+                            <a href="Vulnerabilities\vuln7.html" class="category__link">Learn More</a>
+
                         </article>
 
                         <article class="category">
@@ -123,6 +189,8 @@
                             </span>
                             <h5>Software and Data Integrity Failures</h5>
                             <p>Provide actionable insights on emerging threats and attack patterns</p>
+                            <a href="Vulnerabilities\vuln8.html" class="category__link">Learn More</a>
+
                         </article>
 
                         <article class="category">
@@ -130,6 +198,8 @@
                             </span>
                             <h5>Security Logging and Monitoring Failures</h5>
                             <p>Lack of proper logging or failure to monitor suspicious activities, delaying detection of security breaches.</p>
+                            <a href="Vulnerabilities\vuln9.html" class="category__link">Learn More</a>
+
                         </article>
 
                         <article class="category">
@@ -137,6 +207,8 @@
                             </span>
                             <h5>Server-Side Request Forgery (SSRF)</h5>
                             <p>Attackers trick the server into making unauthorized requests to internal resources.</p>
+                            <a href="Vulnerabilities\vuln10.html" class="category__link">Learn More</a>
+
                         </article>
                 </div>
             </div>
@@ -213,84 +285,7 @@
     <!--================================================================END OF FAQS=============================================-->
 
     <section class="container testimonials__container mySwiper">
-        <!-- <h2>Students' Testimonials</h2> -->
-        <!-- <div class="swiper-wrapper">
-            <article class="testimonial swiper-slide">
-                <div class="avatar">
-                    <img src="./images/avatar1.jpg">
-                </div>
-                <div class="testimonial__info">
-                    <h5>John Doe</h5>
-                    <small>Web Developer</small>
-                </div>
-                <div class="testimonial__body">
-                    <p>
-                        Hello, I'm a web developer with expertise in HTML, CSS, and JavaScript. 
-                    </p>
-                </div>
-            </article>
 
-            <article class="testimonial swiper-slide">
-                <div class="avatar">
-                    <img src="./images/avatar2.jpg">
-                </div>
-                <div class="testimonial__info">
-                    <h5>Jane Smith</h5>
-                    <small>Graphic Designer</small>
-                </div>
-                <div class="testimonial__body">
-                    <p>
-                        Hey, I'm a graphic designer with a passion for creating visually appealing designs.
-                    </p>
-                </div>
-            </article>
-
-            <article class="testimonial swiper-slide">
-                <div class="avatar">
-                    <img src="./images/avatar3.jpg">
-                </div>
-                <div class="testimonial__info">
-                    <h5>Michael Brown</h5>
-                    <small>Software Engineerr</small>
-                </div>
-                <div class="testimonial__body">
-                    <p>
-                        Hey, I'm a Software Engineer with expertise in Java, Python, and C++. 
-                    </p>
-                </div>
-            </article>
-
-            <article class="testimonial swiper-slide">
-                <div class="avatar">
-                    <img src="./images/avatar4.jpg">
-                </div>
-                <div class="testimonial__info">
-                    <h5>Emily Davis</h5>
-                    <small>Data Analyst</small>
-                </div>
-                <div class="testimonial__body">
-                    <p>
-                        I'm Data Analyst with expertise in SQL, Python, and Tableau. 
-                    </p>
-                </div>
-            </article>
-
-            <article class="testimonial swiper-slide">
-                <div class="avatar">
-                    <img src="./images/avatar5.jpg">
-                </div>
-                <div class="testimonial__info">
-                    <h5>Sarah Wilson</h5>
-                    <small>Project Manager</small>
-                </div>
-                <div class="testimonial__body">
-                    <p>
-                        Hello, I'm a Project Manager with expertise in Agile, Scrum, and Waterfall.
-                    </p>
-                </div>
-            </article>
-        </div> -->
-        <div class="swiper-pagination"></div>
     </section>
 
 
@@ -306,23 +301,6 @@
             </p>
         </div>
 
-        <div class="footer__2">
-            <h4>Permalinks</h4>
-            <ul class="permalinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <!-- <li><a href="courses.html">Courses</a></li> -->
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-
-        <div class="footer__3">
-            <h4>Privacy</h4>
-            <ul class="permalinks">
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms and Conditions</a></li>
-            </ul>
-        </div>
 
         <div class="footer__4">
             <h4>Contact Us</h4>
@@ -373,6 +351,10 @@
           }
         });
       </script>
+
+      <script>
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="tL8lvZZbdGCRaGpCGrZol";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+        </script>
 
 </body>
 </html>
