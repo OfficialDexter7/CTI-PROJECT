@@ -111,7 +111,7 @@ import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11
         // Redirect after the confetti effect has finished
         const user = userCredential.user;
         localStorage.setItem('loggedInUserId', user.uid);
-        window.location.href = 'http://127.0.0.1:5500/index.html';
+        window.location.href = 'https://cti-official.vercel.app/index.html';
       }
     }());
   })
