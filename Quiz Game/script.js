@@ -91,18 +91,200 @@ const questions = [
             { text: "Implementing rate limiting and authentication", correct: true },
             { text: "Hardcoding credentials in the source code", correct: false },
         ]
+    },
+
+    {
+        question: "Which OWASP vulnerability occurs when user input is executed as code in the browser?",
+        answers: [
+            { text: "Cross-Site Scripting (XSS)", correct: true },
+            { text: "Broken Authentication", correct: false },
+            { text: "Security Misconfiguration", correct: false },
+            { text: "SQL Injection", correct: false },
+        ]
+    },
+    {
+        question: "What is the primary goal of OWASP?",
+        answers: [
+            { text: "To provide open-source tools for penetration testing", correct: false },
+            { text: "To improve software security awareness and education", correct: true },
+            { text: "To create web application firewalls", correct: false },
+            { text: "To enforce security regulations on companies", correct: false },
+        ]
+    },
+    {
+        question: "Which OWASP vulnerability is associated with poor session management?",
+        answers: [
+            { text: "Broken Authentication", correct: true },
+            { text: "Cross-Site Request Forgery (CSRF)", correct: false },
+            { text: "Security Misconfiguration", correct: false },
+            { text: "Cryptographic Failures", correct: false },
+        ]
+    },
+    {
+        question: "What is the purpose of a Content Security Policy (CSP)?",
+        answers: [
+            { text: "To prevent SQL Injection attacks", correct: false },
+            { text: "To mitigate the impact of Cross-Site Scripting (XSS)", correct: true },
+            { text: "To prevent server-side attacks", correct: false },
+            { text: "To allow unrestricted API access", correct: false },
+        ]
+    },
+    {
+        question: "Which security measure helps prevent brute force attacks?",
+        answers: [
+            { text: "Using CAPTCHA", correct: true },
+            { text: "Disabling HTTPS", correct: false },
+            { text: "Storing passwords in plaintext", correct: false },
+            { text: "Allowing unlimited login attempts", correct: false },
+        ]
+    },
+    {
+        question: "Which of the following is an example of Security Misconfiguration?",
+        answers: [
+            { text: "Using default credentials for admin accounts", correct: true },
+            { text: "Hashing passwords before storing them", correct: false },
+            { text: "Implementing multi-factor authentication", correct: false },
+            { text: "Validating user input", correct: false },
+        ]
+    },
+    {
+        question: "Which of the following helps prevent Cross-Site Request Forgery (CSRF)?",
+        answers: [
+            { text: "Using CSRF tokens", correct: true },
+            { text: "Disabling cookies", correct: false },
+            { text: "Encrypting database connections", correct: false },
+            { text: "Allowing mixed HTTP/HTTPS content", correct: false },
+        ]
+    },
+    {
+        question: "Why should you avoid using hardcoded credentials in your application?",
+        answers: [
+            { text: "They can be easily exposed and exploited", correct: true },
+            { text: "They improve performance", correct: false },
+            { text: "They are required for secure authentication", correct: false },
+            { text: "They make debugging easier", correct: false },
+        ]
+    },
+    {
+        question: "Which attack exploits insufficient validation of serialized objects?",
+        answers: [
+            { text: "Insecure Deserialization", correct: true },
+            { text: "Broken Access Control", correct: false },
+            { text: "SQL Injection", correct: false },
+            { text: "Security Misconfiguration", correct: false },
+        ]
+    },
+    {
+        question: "What is the best practice for securing stored passwords?",
+        answers: [
+            { text: "Using strong hashing algorithms like bcrypt", correct: true },
+            { text: "Storing passwords in plaintext", correct: false },
+            { text: "Encrypting passwords with a reversible algorithm", correct: false },
+            { text: "Using short, simple passwords", correct: false },
+        ]
+    },
+    {
+        question: "Which OWASP vulnerability involves allowing unauthorized users to access data?",
+        answers: [
+            { text: "Broken Access Control", correct: true },
+            { text: "SQL Injection", correct: false },
+            { text: "Insecure Deserialization", correct: false },
+            { text: "Cross-Site Scripting (XSS)", correct: false },
+        ]
+    },
+    {
+        question: "What is the most effective way to prevent a Server-Side Request Forgery (SSRF) attack?",
+        answers: [
+            { text: "Restricting internal resource access", correct: true },
+            { text: "Using weak authentication methods", correct: false },
+            { text: "Disabling firewalls", correct: false },
+            { text: "Storing API keys in client-side code", correct: false },
+        ]
+    },
+    {
+        question: "Which of the following is an insecure coding practice?",
+        answers: [
+            { text: "Using parameterized queries", correct: false },
+            { text: "Sanitizing user input", correct: false },
+            { text: "Storing sensitive data in local storage", correct: true },
+            { text: "Applying the principle of least privilege", correct: false },
+        ]
+    },
+    {
+        question: "What is the primary cause of a Directory Traversal attack?",
+        answers: [
+            { text: "Improper validation of user input", correct: true },
+            { text: "Weak password policies", correct: false },
+            { text: "Lack of HTTPS encryption", correct: false },
+            { text: "Excessive user permissions", correct: false },
+        ]
+    },
+    {
+        question: "What type of attack attempts to guess user credentials by trying multiple combinations?",
+        answers: [
+            { text: "Brute Force Attack", correct: true },
+            { text: "Man-in-the-Middle Attack", correct: false },
+            { text: "SQL Injection", correct: false },
+            { text: "Denial of Service (DoS)", correct: false },
+        ]
+    },
+    {
+        question: "Which security concept involves giving users the minimum necessary access?",
+        answers: [
+            { text: "Principle of Least Privilege", correct: true },
+            { text: "Security Misconfiguration", correct: false },
+            { text: "Privilege Escalation", correct: false },
+            { text: "Denial of Service", correct: false },
+        ]
+    },
+    {
+        question: "Which of the following is an example of Cryptographic Failure?",
+        answers: [
+            { text: "Using outdated encryption algorithms", correct: true },
+            { text: "Using strong authentication", correct: false },
+            { text: "Enforcing SSL/TLS connections", correct: false },
+            { text: "Applying Content Security Policy (CSP)", correct: false },
+        ]
+    },
+    {
+        question: "Why is it important to validate and sanitize user input?",
+        answers: [
+            { text: "To prevent injection attacks and ensure data integrity", correct: true },
+            { text: "To improve website performance", correct: false },
+            { text: "To make forms more user-friendly", correct: false },
+            { text: "To increase page loading speed", correct: false },
+        ]
+    },
+    {
+        question: "Which practice helps protect sensitive data in transit?",
+        answers: [
+            { text: "Using HTTPS and TLS encryption", correct: true },
+            { text: "Storing credentials in cookies", correct: false },
+            { text: "Allowing unencrypted connections", correct: false },
+            { text: "Disabling security headers", correct: false },
+        ]
     }
 
 ];
 
 const questionElement = document.getElementById("question");
-const answerButtons = document.getElementById("answer-buttons"); // Fix typo
+const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 
+let shuffledQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 
+function shuffleQuestions(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+}
+
 function startQuiz() {
+    shuffledQuestions = [...questions]; // Clone original questions array
+    shuffleQuestions(shuffledQuestions); // Shuffle the questions
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
@@ -112,9 +294,9 @@ function startQuiz() {
 
 function showQuestion() {
     resetState();
-    let currentQuestion = questions[currentQuestionIndex];
+    let currentQuestion = shuffledQuestions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question; // Fix typo
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
@@ -131,7 +313,7 @@ function showQuestion() {
 function resetState() {
     nextButton.style.display = "none";
     while (answerButtons.firstChild) {
-        answerButtons.removeChild(answerButtons.firstChild); // Fix variable name
+        answerButtons.removeChild(answerButtons.firstChild);
     }
 }
 
@@ -153,24 +335,24 @@ function selectAnswer(e) {
     nextButton.style.display = "block";
 }
 
-function showScore(){
+function showScore() {
     resetState();
-    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    questionElement.innerHTML = `You scored ${score} out of ${shuffledQuestions.length}!`;
     nextButton.innerHTML = "Play again !!";
     nextButton.style.display = "block";
 }
 
-function handleNextButton(){
+function handleNextButton() {
     currentQuestionIndex++;
-    if(currentQuestionIndex < questions.length){
+    if (currentQuestionIndex < shuffledQuestions.length) {
         showQuestion();
-    } else{
+    } else {
         showScore();
     }
 }
 
 nextButton.addEventListener("click", () => {
-    if (currentQuestionIndex < questions.length) {
+    if (currentQuestionIndex < shuffledQuestions.length) {
         handleNextButton();
     } else {
         startQuiz();
@@ -178,3 +360,4 @@ nextButton.addEventListener("click", () => {
 });
 
 startQuiz();
+
