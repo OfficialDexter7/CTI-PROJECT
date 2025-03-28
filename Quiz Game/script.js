@@ -271,20 +271,17 @@ const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 
-let shuffledQuestions = [];
+let selectedQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 
-function shuffleQuestions(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-    }
+function getRandomQuestions(array, num) {
+    let shuffled = [...array].sort(() => 0.5 - Math.random()); // Shuffle array
+    return shuffled.slice(0, num); // Get first 'num' elements
 }
 
 function startQuiz() {
-    shuffledQuestions = [...questions]; // Clone original questions array
-    shuffleQuestions(shuffledQuestions); // Shuffle the questions
+    selectedQuestions = getRandomQuestions(questions, 10); // Pick 10 unique random questions
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
@@ -294,7 +291,7 @@ function startQuiz() {
 
 function showQuestion() {
     resetState();
-    let currentQuestion = shuffledQuestions[currentQuestionIndex];
+    let currentQuestion = selectedQuestions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
@@ -337,14 +334,14 @@ function selectAnswer(e) {
 
 function showScore() {
     resetState();
-    questionElement.innerHTML = `You scored ${score} out of ${shuffledQuestions.length}!`;
+    questionElement.innerHTML = `You scored ${score} out of ${selectedQuestions.length}!`;
     nextButton.innerHTML = "Play again !!";
     nextButton.style.display = "block";
 }
 
 function handleNextButton() {
     currentQuestionIndex++;
-    if (currentQuestionIndex < shuffledQuestions.length) {
+    if (currentQuestionIndex < selectedQuestions.length) {
         showQuestion();
     } else {
         showScore();
@@ -352,7 +349,7 @@ function handleNextButton() {
 }
 
 nextButton.addEventListener("click", () => {
-    if (currentQuestionIndex < shuffledQuestions.length) {
+    if (currentQuestionIndex < selectedQuestions.length) {
         handleNextButton();
     } else {
         startQuiz();
