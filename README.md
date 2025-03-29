@@ -221,7 +221,7 @@ Start the server : ```node app.js```
 
 ## Screenshots
 
-![Login-Signup]([https://raw.githubusercontent.com/username/repo/main/images/your-image.png](https://github.com/OfficialDexter7/CTI-PROJECT/blob/main/assets/images/Picture1.png))
+Login-Signup Page Image - ([https://raw.githubusercontent.com/username/repo/main/images/your-image.png](https://github.com/OfficialDexter7/CTI-PROJECT/blob/main/assets/images/Picture1.png))
 
 
 https://github.com/OfficialDexter7/CTI-PROJECT/blob/main/assets/images/Picture1.png
