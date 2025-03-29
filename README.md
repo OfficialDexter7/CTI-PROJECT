@@ -205,7 +205,7 @@ The backend API will be available at http://localhost:5500
 To deploy code security scanner functionality
 
 ```bash
-  Path - CTI-PROJECT/Functions/Code_Scanner/backend/
+  Path - CTI-PROJECT/Functions/Code_Scanner/
 ```
 Start the server : ```node node.js```  
 
@@ -255,7 +255,7 @@ We appreciate the hard work and dedication of our team members:
 
 * Vedprakash Umare
 
-See `contributing.md` for ways to get started.
+See `contributing.md` for ways to get started
 
 Please adhere to this project's `code of conduct`.
 
