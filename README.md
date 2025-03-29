@@ -241,9 +241,19 @@ Chatbot - ([https://raw.githubusercontent.com/username/repo/main/images/your-ima
 
 
 
-## Contributing
+## Contributors
 
 Contributions are always welcome!
+
+We appreciate the hard work and dedication of our team members:
+
+* Bhavesh Bhagat
+
+* Chaitanya Badukale
+
+* Harsh Kachare
+
+* Vedprakash Umare
 
 See `contributing.md` for ways to get started.
 
