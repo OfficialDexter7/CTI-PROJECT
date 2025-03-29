@@ -221,7 +221,7 @@ Start the server : ```node app.js```
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://github.com/OfficialDexter7/CTI-PROJECT/blob/main/assets/images/Picture1.png))
 
 
 ## Contributing
