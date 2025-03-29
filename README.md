@@ -221,7 +221,10 @@ Start the server : ```node app.js```
 
 ## Screenshots
 
-![App Screenshot](["C:\Users\asus\Desktop\images\Picture1.png"g))
+![Alt text]([https://raw.githubusercontent.com/username/repo/main/images/your-image.png](https://github.com/OfficialDexter7/CTI-PROJECT/blob/main/assets/images/Picture1.png))
+
+
+https://github.com/OfficialDexter7/CTI-PROJECT/blob/main/assets/images/Picture1.png
 
 
 ## Contributing
