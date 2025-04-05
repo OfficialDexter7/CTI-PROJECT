@@ -17,8 +17,9 @@ const vulnerabilityPatterns = [
     },
     {
         name: "Cross-Site Scripting (XSS)",
-        regex: /(<script>|document\.write\(|innerHTML\s*=|onerror\s*=|javascript:|eval\(|alert\()/i,
-        message: "❌ XSS detected! Use input sanitization and Content Security Policy (CSP)."
+        regex: /(<script[\s\S]*?>|document\.write\s*\(|innerHTML\s*=|on\w+\s*=|javascript:\s*|eval\s*\(|alert\s*\(|setTimeout\s*\(|setInterval\s*\(|href\s*=\s*['"]?javascript:|localStorage\s*\.|sessionStorage\s*\.|cookie\s*\.|XMLHttpRequest\s*\()/i,
+        message: "❌ XSS detected! Avoid inserting user input directly into the DOM. Use output encoding (e.g., DOMPurify) or Content Security Policy (CSP)."
+
     },
     {
         name: "Insecure Deserialization",
